@@ -146,8 +146,4 @@ class calculator:
 calculator.UserInput()
 print("\n")
 input("Press Enter Key")
-''' 
 
-how programs catches error while execution
-how order of function is imp
-'''
