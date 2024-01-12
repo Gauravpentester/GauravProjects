@@ -1,13 +1,12 @@
-import math
 print("Hello I am a smart calculator Ranu\n")
 print("How can i help you\n")
 class calculator:
  def UserInput():
   data=input("Enter some text:")
-  data=data.lower()
   if data=='whatisyourname' or data=='what is your name':
    print("My name is Ranu")
   else:
+   data=data.lower().split(' ')
    operand=calculator.checkInput(data)
    if len(operand)==0:
     print("Please enter a valid input")
@@ -36,8 +35,14 @@ class calculator:
   
  
  def checkInput(data):
-   integers=[int(x) for x in data if x.isdigit()]
-   return integers
+  l=[]
+  for i in data:
+   try:
+    l.append(float(i))
+   except ValueError:
+    pass
+  return l
+     
   
  def add(operand):
   if len(operand)==2:
@@ -55,7 +60,6 @@ class calculator:
   if len(operand)==2:
    print("Multiplication is:",operand[0]*operand[1])
   else:
-   
    print("Please enter a valid input")
    
  def div(operand):
@@ -65,6 +69,7 @@ class calculator:
     print("Division is:", result)
    except ZeroDivisionError:
     print("Cannot divide by zero!")
+    
  def lcm(operand):
   if len(operand)==2:
    a=operand[0]
@@ -74,16 +79,23 @@ class calculator:
    while True:
     if m*i%a==0 and m*i%b==0:
      break
-     i+=1 
+    i+=1 
    print("LCM is:",m*i)
   else:
    print("Please neter a valid input") 
    
  def hcf(operand):
-  if len(operand)==2:
-   print("HCF is:",math.gcd(operand[0],operand[1]))
-  else:
-   print("Please enter a valid input") 
+   if len(operand)==2:
+    a=operand[0]
+    b=operand[1]
+    H=a if a<b else b
+    while H>=1:
+     if a%H==0 and b%H==0:
+      print("HCF is:",H)
+     H-=1
+   else:
+    print("Please enter a valid input")
+  
  
  def square(operand):
   if len(operand)==1:
@@ -92,10 +104,16 @@ class calculator:
    print("Please enter a valid input") 
  
  def fact(operand):
-  if len(operand)==1:
-   print("Factorial is:",math.factorial(operand[0]))
-  else:
-   print("Please enter a valid input") 
+   if len(operand)==1:
+    sum=1
+    a=operand[0]
+    while operand[0]>=1:
+     sum=sum*a
+     a-=1
+    print("Factorial is:",sum)
+   else:
+    print("Please enter a valid input") 
+ 
  
 
  def CheckOperation(data):
@@ -126,8 +144,8 @@ class calculator:
    print("Enter Valid Input")
     
 calculator.UserInput()
- 
- 
+print("\n")
+input("Press Enter Key")
 ''' 
 
 how programs catches error while execution
